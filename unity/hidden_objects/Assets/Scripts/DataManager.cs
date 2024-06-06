@@ -19,6 +19,6 @@ public class DataManager{
     private async UniTask LoadLevels(){
         UnityWebRequest request = UnityWebRequest.Get(_config.ContentPath);
         await request.SendWebRequest();
-        Debug.Log(request.downloadHandler.text);
+        LevelsResult result = JsonUtility.FromJson<LevelsResult>(request.downloadHandler.text);
     }
 }

@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 7cc00c0c1e0f57346ac79e4bb1ff5af3, type: 2}
+  textAsset: {fileID: 4900000, guid: 687170042b70cb94a981ecca31ead6d0, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
