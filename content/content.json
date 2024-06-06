@@ -1,64 +1,64 @@
-"levels" : {
-	[
-  {
-    "id": 1,
-    "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_1.jpg",
-    "imageName": "Enchanted Key",
-    "counter": 10
-  },
-  {
-    "id": 2,
-    "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_2.jpg",
-    "imageName": "Whimsical Watches",
-    "counter": 10
-  },
-  {
-    "id": 3,
-    "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_3.jpg",
-    "imageName": "Giggling Gnome",
-    "counter": 11
-  },
-  {
-    "id": 4,
-    "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_4.jpg",
-    "imageName": "Fairy Dust Vial",
-    "counter": 11
-  },
-  {
-    "id": 5,
-    "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_5.jpg",
-    "imageName": "Magic Wand",
-    "counter": 11
-  },
-  {
-    "id": 6,
-    "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_6.jpg",
-    "imageName": "Cozy Cottage",
-    "counter": 12
-  },
-  {
-    "id": 7,
-    "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_7.jpg",
-    "imageName": "Friendly Dragon",
-    "counter": 12
-  },
-  {
-    "id": 8,
-    "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_8.jpg",
-    "imageName": "Mystical Book",
-    "counter": 12
-  },
-  {
-    "id": 9,
-    "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_9.jpg",
-    "imageName": "Hidden Treasure Chest",
-    "counter": 12
-  },
-  {
-    "id": 10,
-    "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_10.jpg",
-    "imageName": "Enchanted Forest Mushroom",
-    "counter": 13
-  }
-]
+{
+    "levels": [
+        {
+            "id": 1,
+            "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_1.jpg",
+            "imageName": "Enchanted Key",
+            "counter": 10
+        },
+        {
+            "id": 2,
+            "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_2.jpg",
+            "imageName": "Whimsical Watches",
+            "counter": 10
+        },
+        {
+            "id": 3,
+            "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_3.jpg",
+            "imageName": "Giggling Gnome",
+            "counter": 11
+        },
+        {
+            "id": 4,
+            "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_4.jpg",
+            "imageName": "Fairy Dust Vial",
+            "counter": 11
+        },
+        {
+            "id": 5,
+            "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_5.jpg",
+            "imageName": "Magic Wand",
+            "counter": 11
+        },
+        {
+            "id": 6,
+            "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_6.jpg",
+            "imageName": "Cozy Cottage",
+            "counter": 12
+        },
+        {
+            "id": 7,
+            "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_7.jpg",
+            "imageName": "Friendly Dragon",
+            "counter": 12
+        },
+        {
+            "id": 8,
+            "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_8.jpg",
+            "imageName": "Mystical Book",
+            "counter": 12
+        },
+        {
+            "id": 9,
+            "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_9.jpg",
+            "imageName": "Hidden Treasure Chest",
+            "counter": 12
+        },
+        {
+            "id": 10,
+            "imageUrl": "https://raw.githubusercontent.com/ernestttt/hidden_objects/content_loading/content/images/hid_10.jpg",
+            "imageName": "Enchanted Forest Mushroom",
+            "counter": 13
+        }
+    ]
 }
