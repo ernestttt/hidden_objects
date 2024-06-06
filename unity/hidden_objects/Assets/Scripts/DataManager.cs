@@ -2,11 +2,14 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine.Networking;
 using UnityEngine;
+using System;
 
 public class DataManager{
 
     private Dictionary<int, LevelData> levels;
     private GameConfig _config;
+
+    public Action LoadingError;
 
     public DataManager(GameConfig config){
         _config = config;
@@ -17,16 +20,32 @@ public class DataManager{
     }
 
     private async UniTask LoadLevels(){
+        if (!IsInternetAvailable())
+        {
+            Debug.Log("There is no internet connection");
+            LoadingError?.Invoke();
+            return;
+        }
+
         UnityWebRequest request = UnityWebRequest.Get(_config.ContentPath);
         await request.SendWebRequest();
-        LevelsResult result = JsonUtility.FromJson<LevelsResult>(request.downloadHandler.text);
-        LevelData[] levelDatas = result.levels;
 
-        levels = new Dictionary<int, LevelData>();
-        for (int i = 0; i < levelDatas.Length; i++)
+        if (request.result == UnityWebRequest.Result.Success)
         {
-            LevelData levelData = levelDatas[i];
-            levels.Add(levelData.id, levelData);
+            LevelsResult result = JsonUtility.FromJson<LevelsResult>(request.downloadHandler.text);
+            LevelData[] levelDatas = result.levels;
+
+            levels = new Dictionary<int, LevelData>();
+            for (int i = 0; i < levelDatas.Length; i++)
+            {
+                LevelData levelData = levelDatas[i];
+                levels.Add(levelData.id, levelData);
+            }
+        }
+        else
+        {
+            Debug.Log(request.error);
+            LoadingError?.Invoke();
         }
     }
 
@@ -38,10 +57,28 @@ public class DataManager{
         }
     }
 
+    private bool IsInternetAvailable()
+    {
+        return Application.internetReachability != NetworkReachability.NotReachable;
+    }
+
     public async UniTask<Texture2D> LoadTexture(string url){
+        if (!IsInternetAvailable())
+        {
+            Debug.Log("There is no internet connection");
+            return null;
+        }
+
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(url);
         await request.SendWebRequest();
-        Texture2D texture =  DownloadHandlerTexture.GetContent(request);
-        return texture;
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            Texture2D texture =  DownloadHandlerTexture.GetContent(request);
+            return texture;
+        }
+        else{
+            Debug.Log(request.error);
+            return null;
+        }
     }
 }
