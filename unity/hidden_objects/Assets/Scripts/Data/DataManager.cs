@@ -14,6 +14,8 @@ public class DataManager{
     private List<Level> levels;
     public List<Level> Levels => levels;
 
+    public Action<Level> OpenLevelCallback;
+
     public DataManager(GameConfig config){
         _config = config;
     }
@@ -26,7 +28,7 @@ public class DataManager{
     private void InitLevels(){
         levels = new List<Level>();
         for (int i = 0; i < levelDatas.Count; i++){
-            Level level = new Level(levelDatas[i], new SavedLevelProgress(), this);
+            Level level = new Level(levelDatas[i], new SavedLevelProgress(), LoadTexture, OpenLevelCallback);
             levels.Add(level);
         }
     }

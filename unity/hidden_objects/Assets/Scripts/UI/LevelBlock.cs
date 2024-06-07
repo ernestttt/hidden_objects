@@ -94,6 +94,6 @@ public class LevelBlock : MonoBehaviour, IPointerDownHandler
     }
 
     public void OnPointerDown(PointerEventData eventData){
-        Debug.Log("level was clicked");
+        _level.Open();
     }
 }
