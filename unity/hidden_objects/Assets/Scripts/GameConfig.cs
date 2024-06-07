@@ -6,6 +6,8 @@ using UnityEngine;
 public class GameConfig : ScriptableObject
 {
     [SerializeField] private string contentListPath;
+    [SerializeField] private string savePath = "/saveData";
 
     public string ContentPath => contentListPath;
+    public string SavePath => Application.persistentDataPath + savePath;
 }

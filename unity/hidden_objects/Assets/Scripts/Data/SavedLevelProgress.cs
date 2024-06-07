@@ -9,6 +9,11 @@ public class SavedLevelProgress
     public int Id => _id;
     public int Progress => _progress;
 
+    public SavedLevelProgress(int id){
+        _id = id;
+        _progress = 0;
+    }
+
     public void AddProgress(){
         _progress++;
     }

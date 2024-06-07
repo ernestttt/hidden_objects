@@ -10,12 +10,17 @@ public class Level
     private Func<string, UniTask<Texture2D>> loadTexture;
     private Action<Level> openLevel;
 
+    public event Action OnProgressUpdated;
+    public event Action OnCompleted;
+    public event Action<SavedLevelProgress> saveLevel;
+
     public Level(LevelData levelData, SavedLevelProgress progress, 
-                Func<string, UniTask<Texture2D>> loadTexture, Action<Level> openLevel){
+                Func<string, UniTask<Texture2D>> loadTexture, Action<Level> openLevel, Action<SavedLevelProgress> save){
         this._levelData = levelData;
         this._savedData = progress;
         this.loadTexture = loadTexture;
         this.openLevel = openLevel;
+        this.saveLevel = save;
     }
 
     public bool IsCompleted => _savedData.Progress >= _levelData.counter;
@@ -32,5 +37,17 @@ public class Level
 
     public void Open(){
         openLevel?.Invoke(this);
+    }
+
+    public void AddProgress(){
+        _savedData.AddProgress();
+        OnProgressUpdated?.Invoke();
+        if(IsCompleted){
+            OnCompleted?.Invoke();
+        }
+    }
+
+    public void Save(){
+        saveLevel?.Invoke(_savedData);
     }
 }

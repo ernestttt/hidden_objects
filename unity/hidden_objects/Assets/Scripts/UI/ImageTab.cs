@@ -44,7 +44,7 @@ public class ImageTab : MonoBehaviour
 
     private void CalculateImageSize(){
         Vector3[] corners = new Vector3[4];
-        ((RectTransform)_scrollRect.transform).GetWorldCorners(corners);
+        ((RectTransform)_scrollRect.transform.parent).GetWorldCorners(corners);
         _itemSize = (corners[2].x - corners[1].x) / _numberOfColumns;
     }
 }

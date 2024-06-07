@@ -3,6 +3,8 @@ using Cysharp.Threading.Tasks;
 using UnityEngine.Networking;
 using UnityEngine;
 using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class DataManager{
 
@@ -15,9 +17,15 @@ public class DataManager{
     public List<Level> Levels => levels;
 
     public Action<Level> OpenLevelCallback;
+    private BinaryFormatter binaryFormatter = new BinaryFormatter();
 
     public DataManager(GameConfig config){
         _config = config;
+
+        if (!Directory.Exists(_config.SavePath))
+        {
+            Directory.CreateDirectory(_config.SavePath);
+        }
     }
 
     public async UniTask Init(){
@@ -28,9 +36,25 @@ public class DataManager{
     private void InitLevels(){
         levels = new List<Level>();
         for (int i = 0; i < levelDatas.Count; i++){
-            Level level = new Level(levelDatas[i], new SavedLevelProgress(), LoadTexture, OpenLevelCallback);
+            if(!TryToLoadSaveData(levelDatas[i].id, out SavedLevelProgress progress)){
+                progress = new SavedLevelProgress(levelDatas[i].id);
+            }
+            Level level = new Level(levelDatas[i], progress, LoadTexture, OpenLevelCallback, Save);
             levels.Add(level);
         }
+    }
+
+    private bool TryToLoadSaveData(int id, out SavedLevelProgress progress){
+        string path = $"{_config.SavePath}/{id}.dat";
+        if (File.Exists(path)){
+            using (FileStream stream = new FileStream(path, FileMode.Open)){
+                progress = binaryFormatter.Deserialize(stream) as SavedLevelProgress;
+                return true;
+            }
+        }
+
+        progress = null;
+        return false;
     }
 
     private async UniTask LoadLevels(){
@@ -93,6 +117,14 @@ public class DataManager{
         else{
             Debug.Log(request.error);
             return null;
+        }
+    }
+
+    private void Save(SavedLevelProgress progress){
+        using (FileStream stream = new FileStream($"{_config.SavePath}/{progress.Id}.dat", FileMode.Create))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(stream, progress);
         }
     }
 }

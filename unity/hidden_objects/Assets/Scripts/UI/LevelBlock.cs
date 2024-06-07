@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class LevelBlock : MonoBehaviour, IPointerDownHandler
+public class LevelBlock : MonoBehaviour
 {
     public enum LevelBlockState{
         NotLoaded = 0,
@@ -20,7 +20,7 @@ public class LevelBlock : MonoBehaviour, IPointerDownHandler
     [SerializeField] private TextMeshProUGUI _levelName;
     [SerializeField] private GameObject _loadingIcon;
     [SerializeField] private GameObject _notLoadedIcon;
-    [SerializeField] private Image _clickableImage;
+    [SerializeField] private Button _clickableImage;
     [SerializeField] private RawImage _image;
 
     private Level _level;
@@ -48,7 +48,7 @@ public class LevelBlock : MonoBehaviour, IPointerDownHandler
         _levelName.gameObject.SetActive(true);
         _levelName.text = _level.Name;
         _progressCounter.gameObject.SetActive(true);
-        _progressCounter.text = $"{_level.Progress} / {_level.Counter}";
+        UpdateProgress();
         _image.gameObject.SetActive(true);
     }
 
@@ -56,6 +56,7 @@ public class LevelBlock : MonoBehaviour, IPointerDownHandler
         _completedIcon.gameObject.SetActive(true);
         _levelName.gameObject.SetActive(true);
         _levelName.text = _level.Name;
+        _image.gameObject.SetActive(true);
     }
 
     private void SetState(LevelBlockState state){
@@ -76,6 +77,10 @@ public class LevelBlock : MonoBehaviour, IPointerDownHandler
         }
     }
 
+    public void UpdateProgress(){
+        _progressCounter.text = $"{_level.Progress} / {_level.Counter}";
+    }
+
     public async UniTask Init(Level level){
         _level = level;
         SetState(LevelBlockState.Loading);
@@ -91,9 +96,12 @@ public class LevelBlock : MonoBehaviour, IPointerDownHandler
         }
 
         SetState(LevelBlockState.Loaded);
+
+        _level.OnProgressUpdated += UpdateProgress;
+        _level.OnCompleted += () => SetState(LevelBlockState.Completed);
     }
 
-    public void OnPointerDown(PointerEventData eventData){
-        _level.Open();
+    private void Start(){
+        _clickableImage.onClick.AddListener(() => _level.Open());
     }
 }
