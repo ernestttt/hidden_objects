@@ -57,10 +57,16 @@ namespace Data
             string path = $"{_config.SavePath}/{id}.dat";
             if (File.Exists(path))
             {
-                using (FileStream stream = new FileStream(path, FileMode.Open))
+                try
                 {
-                    progress = binaryFormatter.Deserialize(stream) as SavedLevelProgress;
-                    return true;
+                    using (FileStream stream = new FileStream(path, FileMode.Open))
+                    {
+                        progress = binaryFormatter.Deserialize(stream) as SavedLevelProgress;
+                        return true;
+                    }
+                }
+                catch(Exception e){
+                    Debug.LogError(e);
                 }
             }
 

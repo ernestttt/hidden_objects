@@ -1271,6 +1271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _imageTab: {fileID: 1960872406}
   _gameTab: {fileID: 362169540}
+  _unableToLoadError: {fileID: 188086856}
 --- !u!1 &1498344733
 GameObject:
   m_ObjectHideFlags: 0
