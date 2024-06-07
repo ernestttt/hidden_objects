@@ -1,4 +1,6 @@
 using UnityEngine;
+using Data;
+using UI;
 
 public class MainManager : MonoBehaviour 
 {

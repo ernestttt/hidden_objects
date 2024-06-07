@@ -1,39 +1,48 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Data;
 
-public class UIManager : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private ImageTab _imageTab;
-    [SerializeField] private GameTab _gameTab;
-    [SerializeField] private GameObject _unableToLoadError;
-
-    private void Start(){
-        _gameTab.BackToMenu += OpenMenu;
-    }
-
-    public void InitImages(List<Level> levels){
-        _imageTab.Init(levels);
-    }
-
-    public void OpenLevel(Level level){
-        Reset();
-        _gameTab.gameObject.SetActive(true);
-        _gameTab.Init(level);
-    }
-
-    public void OpenMenu(){
-        Reset();
-        _imageTab.gameObject.SetActive(true);
-    }
-
-    public void ShowUnableToLoadError()
+    public class UIManager : MonoBehaviour
     {
-        _unableToLoadError.SetActive(true);
-    }
+        [SerializeField] private ImageTab _imageTab;
+        [SerializeField] private GameTab _gameTab;
+        [SerializeField] private GameObject _unableToLoadError;
 
-    private void Reset(){
-        _imageTab.gameObject.SetActive(false);
-        _gameTab.gameObject.SetActive(false);
-        _unableToLoadError.SetActive(false);
+        private void Start()
+        {
+            _gameTab.BackToMenu += OpenMenu;
+        }
+
+        public void InitImages(List<Level> levels)
+        {
+            _imageTab.Init(levels);
+        }
+
+        public void OpenLevel(Level level)
+        {
+            Reset();
+            _gameTab.gameObject.SetActive(true);
+            _gameTab.Init(level);
+        }
+
+        public void OpenMenu()
+        {
+            Reset();
+            _imageTab.gameObject.SetActive(true);
+        }
+
+        public void ShowUnableToLoadError()
+        {
+            _unableToLoadError.SetActive(true);
+        }
+
+        private void Reset()
+        {
+            _imageTab.gameObject.SetActive(false);
+            _gameTab.gameObject.SetActive(false);
+            _unableToLoadError.SetActive(false);
+        }
     }
 }
