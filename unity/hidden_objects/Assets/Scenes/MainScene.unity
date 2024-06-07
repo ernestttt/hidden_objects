@@ -380,6 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 7cc00c0c1e0f57346ac79e4bb1ff5af3, type: 2}
+  uIManager: {fileID: 1493740270}
 --- !u!1 &1078732159
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +459,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1493740269}
   - component: {fileID: 1493740268}
+  - component: {fileID: 1493740270}
   - component: {fileID: 1493740267}
   - component: {fileID: 1493740266}
   m_Layer: 5
@@ -525,7 +527,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -550,6 +552,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1493740270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493740265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de3031341f037754fb8b71f9f377b0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _imageTab: {fileID: 1960872406}
 --- !u!1 &1960872401
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +579,7 @@ GameObject:
   - component: {fileID: 1960872404}
   - component: {fileID: 1960872403}
   m_Layer: 5
-  m_Name: Scroll View
+  m_Name: ImageTab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -670,9 +685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c31cc0c227f7b48b2f4f8ab3735219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 7564888211953287080, guid: b2787d63e53a55443a12c9f1026505ba, type: 3}
-  _numberOfItems: 20
-  numberOfColumns: 2
+  _prefab: {fileID: 5485875796281131659, guid: 50a4a5f78f631fe4092963d7b5f0755e, type: 3}
+  _numberOfColumns: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

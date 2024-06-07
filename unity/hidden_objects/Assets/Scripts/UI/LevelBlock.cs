@@ -49,6 +49,7 @@ public class LevelBlock : MonoBehaviour, IPointerDownHandler
         _levelName.text = _level.Name;
         _progressCounter.gameObject.SetActive(true);
         _progressCounter.text = $"{_level.Progress} / {_level.Counter}";
+        _image.gameObject.SetActive(true);
     }
 
     private void SetCompletedState(){

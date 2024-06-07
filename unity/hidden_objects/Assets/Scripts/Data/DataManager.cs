@@ -6,10 +6,13 @@ using System;
 
 public class DataManager{
 
-    private Dictionary<int, LevelData> levels;
+    private List<LevelData> levelDatas;
     private GameConfig _config;
 
     public Action LoadingError;
+
+    private List<Level> levels;
+    public List<Level> Levels => levels;
 
     public DataManager(GameConfig config){
         _config = config;
@@ -17,6 +20,15 @@ public class DataManager{
 
     public async UniTask Init(){
         await LoadLevels();
+        InitLevels();
+    }
+
+    private void InitLevels(){
+        levels = new List<Level>();
+        for (int i = 0; i < levelDatas.Count; i++){
+            Level level = new Level(levelDatas[i], new SavedLevelProgress(), this);
+            levels.Add(level);
+        }
     }
 
     private async UniTask LoadLevels(){
@@ -35,11 +47,11 @@ public class DataManager{
             LevelsResult result = JsonUtility.FromJson<LevelsResult>(request.downloadHandler.text);
             LevelData[] levelDatas = result.levels;
 
-            levels = new Dictionary<int, LevelData>();
+            this.levelDatas = new List<LevelData>();
             for (int i = 0; i < levelDatas.Length; i++)
             {
                 LevelData levelData = levelDatas[i];
-                levels.Add(levelData.id, levelData);
+                this.levelDatas.Add(levelData);
             }
         }
         else
@@ -51,7 +63,7 @@ public class DataManager{
 
     private async UniTask CheckImagesLoading(){
         List<Texture2D> textures = new List<Texture2D>();
-        foreach (LevelData data in levels.Values){
+        foreach (LevelData data in levelDatas){
             Texture2D texture = await LoadTexture(data.imageUrl);
             textures.Add(texture);
         }
